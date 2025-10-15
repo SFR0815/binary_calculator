@@ -13,9 +13,9 @@ setup(
     description='Pure binary arithmetic operations without decimal conversion',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/YOUR_USERNAME/binary_calculator',
-    author='Your Name',
-    author_email='your.email@example.com',
+    url='https://github.com/SFR0815/binary_calculator',
+    author='SFR0815',
+    author_email='',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Education',
@@ -56,9 +56,9 @@ setup(
         ],
     },
     project_urls={
-        'Bug Reports': 'https://github.com/YOUR_USERNAME/binary_calculator/issues',
-        'Source': 'https://github.com/YOUR_USERNAME/binary_calculator',
-        'Documentation': 'https://YOUR_USERNAME.github.io/binary_calculator',
+        'Bug Reports': 'https://github.com/SFR0815/binary_calculator/issues',
+        'Source': 'https://github.com/SFR0815/binary_calculator',
+        'Documentation': 'https://SFR0815.github.io/binary_calculator',
     },
 )
 

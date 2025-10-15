@@ -22,7 +22,7 @@ A comprehensive Python library for **pure binary arithmetic operations** without
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/binary_calculator.git
+git clone https://github.com/SFR0815/binary_calculator.git
 cd binary_calculator
 
 # Install (optional, for documentation)
@@ -194,7 +194,7 @@ MIT License - See [LICENSE](LICENSE) file for details.
 
 ## 🔗 Links
 
-- **Documentation**: [GitHub Pages](https://YOUR_USERNAME.github.io/binary_calculator) (after deployment)
+- **Documentation**: [GitHub Pages](https://SFR0815.github.io/binary_calculator) (after deployment)
 - **Examples**: See `examples/` directory or run `python example.py --list`
 - **Tests**: See `test_*.py` files
 
