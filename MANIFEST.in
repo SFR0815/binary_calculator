@@ -1,0 +1,21 @@
+# Include documentation
+include README.md
+include LICENSE
+include requirements-docs.txt
+
+# Include examples
+recursive-include examples *.py
+recursive-include examples *.md
+
+# Include documentation source
+recursive-include docs *.md
+recursive-include docs *.css
+include mkdocs.yml
+
+# Exclude build and cache files
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store
+prune site
+prune .git
+

@@ -1,0 +1,6 @@
+# Binary Calculator Requirements
+# Python 3.10+ required
+
+# No external dependencies required for core functionality
+# Standard library only
+

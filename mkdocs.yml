@@ -1,0 +1,66 @@
+site_name: Binary Calculator Examples
+site_description: Comprehensive examples for binary calculator operations
+site_author: Binary Calculator Team
+
+theme:
+  name: material
+  palette:
+    primary: indigo
+    accent: indigo
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+      pygments_style: monokai
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ['.']
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+
+nav:
+  - Home: index.md
+  - Basic Examples:
+      - Overview: basic/index.md
+      - 01 - BinaryNumber: basic/example_01_binary_number.md
+      - 02 - BinaryInstruction: basic/example_02_binary_instruction.md
+      - 03 - ArithmeticCalculator: basic/example_03_arithmetic_calculator.md
+      - 04 - BinaryComparator: basic/example_04_binary_comparator.md
+      - 05 - BinaryConverter: basic/example_05_binary_converter.md
+      - 06 - BinaryNormalizer: basic/example_06_binary_normalizer.md
+      - 07 - InstructionExecutor: basic/example_07_instruction_executor.md
+  - Realistic Scenarios:
+      - Overview: realistic_scenarios/index.md
+      - 01 - Memory Address: realistic_scenarios/scenario_01_memory_address.md
+      - 02 - File Storage: realistic_scenarios/scenario_02_file_storage.md
+      - 03 - Network Bandwidth: realistic_scenarios/scenario_03_network_bandwidth.md
+
+docs_dir: docs
+site_dir: site
+
+extra:
+  social:
+    - icon: fontawesome/brands/python
+      link: https://python.org
+
+extra_css:
+  - stylesheets/extra.css
+
