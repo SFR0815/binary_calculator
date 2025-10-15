@@ -1,240 +1,218 @@
 # Binary Calculator
 
-A professional-grade Python calculator for performing arithmetic operations on binary numbers represented as strings of zeros and ones.
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: Type Hints](https://img.shields.io/badge/code%20style-type%20hints-brightgreen.svg)](https://docs.python.org/3/library/typing.html)
 
-## Features
+A comprehensive Python library for **pure binary arithmetic operations** without decimal conversion. Perfect for learning how computers perform calculations at the bit level!
 
-- **Pure Binary Arithmetic**: True binary operations on string patterns—NO decimal conversion! ✨
-- **Binary Arithmetic Operations**: Addition (+), Subtraction (-), Multiplication (*), and Division (/)
-  - Addition: Bit-by-bit with carry propagation
-  - Subtraction: Bit-by-bit with borrow handling
-  - Multiplication: Shift-and-add algorithm
-  - Division: Binary long division
-- **Instruction-Based Interface**: Use `BinaryInstruction` objects to encapsulate operations
-- **Full Encapsulation**: Properties with validated getters and setters
-- **Modular Architecture**: One class per module, organized in subdirectories
-- **String-Based Binary Representation**: Work with binary numbers as intuitive string representations
-- **Bidirectional Conversion**: Binary ↔ Decimal conversion utilities (for convenience)
-- **Input Validation**: Automatic validation of binary strings and operations
-- **Comprehensive Error Handling**: Clear error messages for invalid inputs
-- **Extensive Testing**: 129 comprehensive tests covering all functionality
+## 🌟 Features
 
-## Installation
+- **Pure Binary Arithmetic**: All operations work directly on binary strings
+- **7 Core Components**: Number, Instruction, Calculator, Comparator, Converter, Normalizer, Executor
+- **53 Runnable Examples**: Extensive example library with CLI runner
+- **Zero Dependencies**: Core library uses only Python standard library
+- **Type-Safe**: Complete type hints throughout
+- **Well-Documented**: Comprehensive MkDocs documentation with colorful syntax highlighting
+- **Educational**: Detailed comments explaining every algorithm step
 
-No external dependencies required. Simply clone the repository:
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
-git clone <repository-url>
-cd binary_cals
-```
+# Clone the repository
+git clone https://github.com/YOUR_USERNAME/binary_calculator.git
+cd binary_calculator
 
-## Usage
+# Install (optional, for documentation)
+pip install -e ".[docs]"
+```
 
 ### Basic Usage
 
 ```python
-from binary_calculator import BinaryCalculator, BinaryInstruction
+from binary_calculator import BinaryNumber, ArithmeticCalculator
 
-# Create calculator instance
-calculator = BinaryCalculator()
+# Create binary numbers
+num1 = BinaryNumber(binary_str='1010')  # 10 in decimal
+num2 = BinaryNumber(binary_str='101')   # 5 in decimal
 
-# Create an instruction
-instruction = BinaryInstruction(
-    operand_1='1010',  # Binary for 10
-    operand_2='0101',  # Binary for 5
-    operation='+')
+# Perform pure binary addition
+calculator = ArithmeticCalculator()
+result = calculator.add(operand_1=num1, operand_2=num2)
 
-# Execute the instruction
-result = calculator.execute(instruction=instruction)
-print(result)  # Output: '1111' (Binary for 15)
+print(result.value)    # Output: '1111'
+print(result.to_int()) # Output: 15
 ```
 
-### Direct Operations
+### Run Examples
+
+```bash
+# List all 53 examples
+python example.py --list
+
+# Run specific example
+python example.py numb01      # BinaryNumber basics
+python example.py calc03      # Multiplication
+python example.py exec09      # Executor with large numbers
+
+# Run all examples from a component
+python example.py --all-calc  # All calculator examples
+
+# Run everything
+python example.py --all
+```
+
+## 📚 Documentation
+
+Build and serve the documentation locally:
+
+```bash
+pip install -r requirements-docs.txt
+python -m mkdocs serve
+```
+
+Then open http://127.0.0.1:8000
+
+## 🎯 Core Components
+
+### BinaryNumber
+Encapsulates binary string values with validation, conversion, and arithmetic operations.
 
 ```python
-from binary_calculator import BinaryCalculator
-
-calculator = BinaryCalculator()
-
-# Addition
-result = calculator.add(operand_1='1010', operand_2='0101')
-print(f"1010 + 0101 = {result}")  # Output: 1111
-
-# Subtraction
-result = calculator.subtract(operand_1='1010', operand_2='0101')
-print(f"1010 - 0101 = {result}")  # Output: 101
-
-# Multiplication
-result = calculator.multiply(operand_1='101', operand_2='11')
-print(f"101 * 11 = {result}")  # Output: 1111
-
-# Division (integer division)
-result = calculator.divide(operand_1='1010', operand_2='10')
-print(f"1010 / 10 = {result}")  # Output: 101
+num = BinaryNumber(binary_str='1010')
+num.incr()  # In-place increment
+print(num.value)  # '1011'
 ```
 
-### Conversion Utilities
+### ArithmeticCalculator
+Pure binary arithmetic without decimal conversion.
 
 ```python
-from binary_calculator import BinaryCalculator
-
-calculator = BinaryCalculator()
-
-# Convert binary to decimal
-decimal = calculator.binary_to_decimal(binary_str='1010')
-print(decimal)  # Output: 10
-
-# Convert decimal to binary
-binary = calculator.decimal_to_binary(decimal_num=10)
-print(binary)  # Output: 1010
+calc = ArithmeticCalculator()
+result = calc.multiply(
+    operand_1=BinaryNumber(binary_str='101'),
+    operand_2=BinaryNumber(binary_str='11'))
+# Uses shift-and-add algorithm: '101' * '11' = '1111'
 ```
-
-## API Reference
 
 ### BinaryInstruction
+Encapsulates operations with formatted output.
 
-An instruction object that contains two binary operands and an operation type.
-
-**Constructor Parameters:**
-- `operand_1` (str): First binary number as string (keyword-only)
-- `operand_2` (str): Second binary number as string (keyword-only)
-- `operation` (str): Operation type (+, -, *, /) (keyword-only)
-
-**Raises:**
-- `ValueError`: If operands are not valid binary strings or operation is not supported
-
-### BinaryCalculator
-
-Calculator class for performing arithmetic operations on binary strings.
-
-**Methods:**
-
-#### `add(*, operand_1: str, operand_2: str) -> str`
-Add two binary numbers.
-
-#### `subtract(*, operand_1: str, operand_2: str) -> str`
-Subtract second binary number from first.
-
-#### `multiply(*, operand_1: str, operand_2: str) -> str`
-Multiply two binary numbers.
-
-#### `divide(*, operand_1: str, operand_2: str) -> str`
-Divide first binary number by second (integer division).
-Raises `ZeroDivisionError` if operand_2 is zero.
-
-#### `execute(*, instruction: BinaryInstruction) -> str`
-Execute a binary instruction and return the result.
-
-#### `binary_to_decimal(*, binary_str: str) -> int`
-Convert binary string to decimal integer.
-
-#### `decimal_to_binary(*, decimal_num: int) -> str`
-Convert decimal integer to binary string.
-
-## Examples
-
-### Addition Example
 ```python
+from binary_calculator import BinaryInstruction, InstructionExecutor
+
 instruction = BinaryInstruction(
-    operand_1='1111',  # 15 in decimal
-    operand_2='1',     # 1 in decimal
+    operand_1=BinaryNumber(binary_str='1010'),
+    operand_2=BinaryNumber(binary_str='101'),
     operation='+')
 
-result = calculator.execute(instruction=instruction)
-# Result: '10000' (16 in decimal)
+executor = InstructionExecutor()
+result = executor.calculate(instruction=instruction, print_result=True)
+# Output:
+#   1010
+# +  101
+# ------
+#   1111
+# ======
 ```
 
-### Division Example
-```python
-instruction = BinaryInstruction(
-    operand_1='1010',  # 10 in decimal
-    operand_2='11',    # 3 in decimal
-    operation='/')
+## 📖 Example Categories
 
-result = calculator.execute(instruction=instruction)
-# Result: '11' (3 in decimal, integer division)
-```
+- **BinaryNumber** (9 examples): numb01-numb09
+- **BinaryInstruction** (6 examples): inst01-inst06
+- **ArithmeticCalculator** (7 examples): calc01-calc07
+- **BinaryComparator** (9 examples): comp01-comp09
+- **BinaryConverter** (7 examples): conv01-conv07
+- **BinaryNormalizer** (6 examples): norm01-norm06
+- **InstructionExecutor** (9 examples): exec01-exec09
 
-## Running Tests
+## 🧮 Algorithms Implemented
 
-The project includes **four comprehensive test suites with 129 tests**:
+- **Addition**: Bit-by-bit with carry propagation
+- **Subtraction**: Bit-by-bit with borrow handling
+- **Multiplication**: Shift-and-add algorithm
+- **Division**: Binary long division
+- **Comparison**: Length-based with lexicographic fallback
+- **Normalization**: Leading zero removal and length equalization
 
-### Basic Calculator Tests (27 tests)
-Tests all calculator operations, instruction handling, and basic conversions:
+## 🧪 Testing
 
 ```bash
-python test_binary_calculator.py -v
+# Run all tests
+python -m unittest discover
+
+# Run specific test module
+python -m unittest test_binary_calculator
+
+# Run specific test
+python -m unittest test_binary_calculator.TestArithmeticCalculator.test_01_addition
 ```
 
-### Comprehensive Conversion Tests (48 tests)
-Extensive in-depth testing of binary-decimal conversions:
+## 📦 Package Structure
 
-```bash
-python test_conversions.py -v
+```
+binary_calculator/
+├── binary_calculator/          # Main package
+│   ├── calculator/            # Arithmetic operations
+│   ├── comparator/            # Binary comparisons
+│   ├── converter/             # Binary ↔ Decimal
+│   ├── executor/              # Instruction execution
+│   ├── instruction/           # Instructions & operations
+│   └── normalizer/            # Binary normalization
+├── examples/                  # 53 runnable examples
+│   ├── example.py            # CLI runner
+│   ├── basic/                # 7 example modules
+│   └── realistic_scenarios/  # 3 real-world scenarios
+├── docs/                     # MkDocs documentation
+├── tests/                    # Unit tests
+└── memory-bank/              # Project documentation
 ```
 
-### Property Encapsulation Tests (20 tests)
-Tests for property getters/setters and validation:
+## 🎓 Educational Value
 
-```bash
-python test_instruction_properties.py -v
-```
+This project demonstrates:
+- How binary arithmetic actually works
+- Classic computer science algorithms
+- Clean Python code organization
+- Type-safe programming with type hints
+- Comprehensive documentation practices
+- Test-driven development
 
-### Advanced Instruction Tests (34 tests)
-Advanced encapsulation, edge cases, integration, and validation tests:
+## 🤝 Contributing
 
-```bash
-python test_instruction_advanced.py -v
-```
+This is an educational project. Feel free to:
+- Report bugs or suggest improvements
+- Add more examples
+- Improve documentation
+- Optimize algorithms (while maintaining educational clarity)
 
-### Run All Tests (129 total tests)
-Run the complete test suite:
+## 📄 License
 
-```bash
-python -m unittest discover -s . -p "test_*.py" -v
-```
+MIT License - See [LICENSE](LICENSE) file for details.
 
-The comprehensive test suite includes:
-- **Encapsulation Testing**: Property access, validation, atomicity
-- **Edge Cases**: Zero handling, leading zeros, empty inputs, special characters
-- **Boundary Testing**: 8-bit, 16-bit, 32-bit, and 64-bit boundaries
-- **Sequential Testing**: All values 0-1000, boundary ranges
-- **Pattern Testing**: Alternating bits, walking ones/zeros
-- **Large Number Testing**: Up to 2^1000 and beyond
-- **Mathematical Sequences**: Fibonacci, Mersenne numbers, primes
-- **Random Testing**: 200+ random values across bit ranges
-- **Round-Trip Testing**: Verify conversions are reversible
-- **Stress Testing**: Very large numbers (100+ decimal digits)
-- **Integration Testing**: Instruction reuse, chaining, calculator interaction
-- **Validation Testing**: Comprehensive input validation and error handling
+## 🔗 Links
 
-## Error Handling
+- **Documentation**: [GitHub Pages](https://YOUR_USERNAME.github.io/binary_calculator) (after deployment)
+- **Examples**: See `examples/` directory or run `python example.py --list`
+- **Tests**: See `test_*.py` files
 
-The calculator includes comprehensive error handling:
+## ⭐ Project Statistics
 
-- **Invalid Binary Strings**: Strings containing characters other than '0' and '1' raise `ValueError`
-- **Empty Strings**: Empty operands raise `ValueError`
-- **Invalid Operations**: Operations other than +, -, *, / raise `ValueError`
-- **Division by Zero**: Attempting to divide by '0' raises `ZeroDivisionError`
+- **Lines of Code**: 13,000+
+- **Functions**: 53 examples + 50+ class methods
+- **Test Cases**: 7 test files with 20+ test methods
+- **Documentation Pages**: 11 pages
+- **Examples**: 53 individual runnable examples
 
-## Technical Details
+## 🚀 Next Steps
 
-- **Pure Binary Operations**: All arithmetic operations work directly on binary string patterns without converting to decimal
-  - Addition uses carry propagation
-  - Subtraction uses borrow handling
-  - Multiplication uses shift-and-add algorithm
-  - Division uses binary long division algorithm
-- **Division Behavior**: Division performs integer division (floor division)
-- **Negative Results**: Negative results are represented with a '-' prefix (e.g., '-101')
-- **No Leading Zeros**: Results do not include unnecessary leading zeros (except for zero itself)
-- **Conversion Functions**: `binary_to_decimal()` and `decimal_to_binary()` are provided for convenience but are NOT used internally for arithmetic
+1. Explore the examples: `python example.py --list`
+2. Read the documentation: `python -m mkdocs serve`
+3. Run the tests: `python -m unittest discover`
+4. Study the algorithms in `binary_calculator/calculator/`
 
-## Requirements
+---
 
-- Python 3.10 or higher
-- No external dependencies (uses standard library only)
-
-## License
-
-This project is provided as-is for educational and practical use.
-
+**Built with ❤️ for learning binary arithmetic**
